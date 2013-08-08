@@ -1,7 +1,6 @@
 package doodlejump;
 import doodlejump.gui.Kayttoliittyma;
 import doodlejump.peli.Peli;
-import java.awt.Graphics;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +12,7 @@ public class DoodleJump {
     public static void main(String[] args) {
         
         final Peli peli = new Peli(400, 600);
-
+        
         Kayttoliittyma kayttoliittyma = new Kayttoliittyma(peli);
         SwingUtilities.invokeLater(kayttoliittyma);
     

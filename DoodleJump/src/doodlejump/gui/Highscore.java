@@ -20,7 +20,7 @@ import javax.swing.ImageIcon;
 
 public class Highscore { 
   
-    final String FILE_NAME = "highscores.txt";
+    final String FILE_NAME = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\txtresources\\highscores.txt";
     private List<String> names;
     private List<Integer> scores;
     private Image img;
@@ -36,15 +36,14 @@ public class Highscore {
         this.img = ii.getImage();
         
         this.readFile();
-        this.printOutHighscores();
     }
     
     
     
     
     public void readFile() {
-        URL url = getClass().getResource(FILE_NAME);
-        File file = new File(url.getPath());
+        URL url = this.getClass().getResource(FILE_NAME);
+        File file = new File(FILE_NAME);
         Scanner reader = null;
 
         try {
@@ -59,7 +58,6 @@ public class Highscore {
             String[] split = line.split(" ");
             names.add(split[0]);
             scores.add(Integer.parseInt(split[1]));
-
         }
 
         reader.close();
@@ -84,12 +82,7 @@ public class Highscore {
         }
     }
     
-    public void printOutHighscores(){
-        for(int i = 0; i < 10; i++){
-            String str = names.get(i) + " " + scores.get(i);
-            System.out.println(str);
-        }
-    }
+    
     
     public void piirra(Graphics graphics){
         graphics.drawImage(img, 0, 0, null);
