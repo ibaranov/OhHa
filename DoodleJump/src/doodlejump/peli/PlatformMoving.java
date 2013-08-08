@@ -18,14 +18,14 @@ public class PlatformMoving extends Platform{
     public PlatformMoving(int width, int y) {
         super(width, y);
         this.direction = Direction.LEFT;
-        super.setPlatName("platformMoving.png");
+        super.setPlatName("C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\platformMoving.png");
         super.setType(2);
         
         Random random = new Random();
         this.xVelocity = 1 + random.nextInt((4+1)-1);
          
         
-        ImageIcon ii = new ImageIcon(this.getClass().getResource(super.getPlatName()));
+        ImageIcon ii = new ImageIcon(super.getPlatName());
         super.setImg(ii.getImage());
     }
   

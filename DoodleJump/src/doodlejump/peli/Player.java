@@ -18,6 +18,7 @@ public class Player {
     private boolean jumping = true;
     private int score;
     private int width;
+    String playerImageName;
     
     
     public Player(int width, double y, Direction direction){
@@ -28,8 +29,9 @@ public class Player {
         this.yVelocity = 0;
         this.score = 0;
         this.width = width;
+        this.playerImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\doodle40.png";
         
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("doodle40.png"));
+        ImageIcon ii = new ImageIcon(this.playerImageName);
         this.img = ii.getImage();
         
         

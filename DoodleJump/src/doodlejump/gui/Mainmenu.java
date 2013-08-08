@@ -23,8 +23,8 @@ public class Mainmenu {
 
     public Mainmenu() {
     
-        bgImageName = "bgimage.png";
-        ImageIcon ii = new ImageIcon(this.getClass().getResource(bgImageName));
+        bgImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\gui\\images\\bgimage.png";
+        ImageIcon ii = new ImageIcon(bgImageName);
         this.img = ii.getImage();
         
     }

@@ -29,8 +29,8 @@ public class Gameover {
     public Gameover(Highscore highscore) {
         
         this.playerName = "";
-        gameoverImageName = "gameover.png";
-        ImageIcon ii = new ImageIcon(this.getClass().getResource(gameoverImageName));
+        gameoverImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\gui\\images\\gameover.png";
+        ImageIcon ii = new ImageIcon(gameoverImageName);
         this.img = ii.getImage();
         this.highscore = highscore;
     }

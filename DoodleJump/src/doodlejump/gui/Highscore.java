@@ -30,9 +30,9 @@ public class Highscore {
     public Highscore() {
         this.names = new ArrayList<String>();
         this.scores = new ArrayList<Integer>();
-        bgImageName = "highscore.png";
+        bgImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\gui\\images\\highscore.png";
         
-        ImageIcon ii = new ImageIcon(this.getClass().getResource(bgImageName));
+        ImageIcon ii = new ImageIcon(bgImageName);
         this.img = ii.getImage();
         
         this.readFile();

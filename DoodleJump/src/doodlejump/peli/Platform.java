@@ -19,11 +19,11 @@ public class Platform {
         this.platformWidth = 50;
         this.x = random.nextInt(width - platformWidth - 15);
         this.y = y;
-        this.platName = "platform1.png";
+        this.platName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\platform1.png";
         this.type = 1;
         this.bouncedOn = false;
         
-        ImageIcon ii = new ImageIcon(this.getClass().getResource(platName));
+        ImageIcon ii = new ImageIcon(platName);
         this.img = ii.getImage();    
     }
 
