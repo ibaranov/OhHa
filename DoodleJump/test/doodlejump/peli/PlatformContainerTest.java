@@ -4,6 +4,8 @@
  */
 package doodlejump.peli;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -51,11 +53,9 @@ public class PlatformContainerTest {
      */
     @Test
     public void testReset() {
-        System.out.println("reset");
-        
+        System.out.println("reset");       
         platformcontainer.reset();
-        
-        
+        System.out.println("same as generateplatforms()");
     }
 
     /**
@@ -64,24 +64,18 @@ public class PlatformContainerTest {
     @Test
     public void testGetPlatforms() {
         System.out.println("getPlatforms");
-        
-        List expResult = null;
-        List result = platformcontainer.getPlatforms();
-        assertEquals(expResult, result);
-        
+        System.out.println("simple getter");
     }
 
     /**
-     * Test of getPlatformTypes method, of class PlatformContainer.
+     * Test of getPlatformTypes method, of class PliatformContainer.
      */
     @Test
     public void testGetPlatformTypes() {
         System.out.println("getPlatformTypes");
-        
-        List expResult = null;
+        List expResult = new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1, 1, 1, 1)); 
         List result = platformcontainer.getPlatformTypes();
         assertEquals(expResult, result);
-       
     }
 
     /**
@@ -90,11 +84,9 @@ public class PlatformContainerTest {
     @Test
     public void testGetDifficultyLevel() {
         System.out.println("getDifficultyLevel");
-        
         int expResult = 0;
         int result = platformcontainer.getDifficultyLevel();
         assertEquals(expResult, result);
-        
     }
 
     /**
@@ -103,10 +95,10 @@ public class PlatformContainerTest {
     @Test
     public void testSetDifficultyLevel() {
         System.out.println("setDifficultyLevel");
-        int difficultyLevel = 0;
+        int difficultyLevel = 5;
         
         platformcontainer.setDifficultyLevel(difficultyLevel);
-        
+        assertEquals(difficultyLevel, platformcontainer.getDifficultyLevel());
     }
 
     /**
@@ -115,8 +107,13 @@ public class PlatformContainerTest {
     @Test
     public void testGeneratePlatforms() {
         System.out.println("generatePlatforms");
+        List result = platformcontainer.getPlatforms();
+        List types = platformcontainer.getPlatformTypes();
+        Platform testplat = new Platform(400, 100);
         
-        platformcontainer.generatePlatforms();
-        
+        int numberOfPlatforms = types.size();
+        for(int i = 0; i < numberOfPlatforms; i++){
+            assertEquals(result.get(i).getClass(), testplat.getClass());
+        }
     }
 }
