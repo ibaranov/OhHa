@@ -65,10 +65,6 @@ public class Highscore {
         reader.close();
     }
     
-    public void writeFile(){
-        // TODO
-    }
-    
     public boolean isScoreInTopTen(int playerscore){
         if(playerscore > scores.get(9)){
             return true;

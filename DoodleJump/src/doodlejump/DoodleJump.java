@@ -1,6 +1,4 @@
-
 package doodlejump;
-
 import doodlejump.gui.Kayttoliittyma;
 import doodlejump.peli.Peli;
 import java.awt.Graphics;

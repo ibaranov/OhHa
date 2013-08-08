@@ -1,6 +1,7 @@
 package doodlejump.peli; 
 import doodlejump.domain.Gamestate;
 import doodlejump.gui.Paivitettava;
+import doodlejump.peli.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
