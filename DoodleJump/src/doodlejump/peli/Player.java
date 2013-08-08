@@ -10,7 +10,6 @@ public class Player {
   
     private double x;
     private double y;
-    private double height = 0;
     private double yVelocity;
     public final double gravity = 0.25; 
     private Direction direction;
@@ -35,8 +34,14 @@ public class Player {
         
         
     }
+
+    public double getGravity() {
+        return gravity;
+    }
     
-    public void siirra(int dx, int dy){
+    
+    
+    public void siirra(double dx, double dy){
         x += dx;
         y += dy;
     }
@@ -99,6 +104,12 @@ public class Player {
         //************************
     }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    
+    
     public double getyVelocity() {
         return yVelocity;
     }
@@ -117,6 +128,12 @@ public class Player {
         this.yVelocity = 0;
         this.score = 0;
     }
+
+    public int getxVelocity() {
+        return xVelocity;
+    }
+    
+    
     
     public boolean collidesWithPlatform(Platform platform){
         
