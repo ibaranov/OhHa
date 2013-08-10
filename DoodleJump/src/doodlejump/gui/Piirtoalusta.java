@@ -59,8 +59,10 @@ public class Piirtoalusta extends JPanel implements Paivitettava{
         
         switch (gamestate) {
         
-            case SPLASH: splash.piirra(graphics);
-                         break;
+            case SPLASH: 
+                        splash.piirra(graphics);
+                        break;
+                
             case GAME: 
                         
                         // Piirra alustat
@@ -73,21 +75,20 @@ public class Piirtoalusta extends JPanel implements Paivitettava{
                         player.piirra(graphics);
                         break;
             
-            case MAINMENU: mainmenu.piirra(graphics);
-                break;
+            case MAINMENU: 
+                        mainmenu.piirra(graphics);
+                        break;
             
             case GAMEOVER:
-                gameover.setGraphics(graphics);
-                gameover.setScore(player.getScore());
-                gameover.piirra(graphics);
-                   
-                break;
+                        gameover.setGraphics(graphics);
+                        gameover.setScore(player.getScore());
+                        gameover.piirra(graphics);
+                        break;
             
             case HIGHSCORES:
-                gameover.reset();
-                highscore.piirra(graphics);
-            
-                break;
+                        gameover.reset();
+                        highscore.piirra(graphics);
+                        break;
         }
         
     }

@@ -13,7 +13,10 @@ package doodlejump.gui;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import javax.swing.ImageIcon;
@@ -42,7 +45,6 @@ public class Highscore {
     
     
     public void readFile() {
-        URL url = this.getClass().getResource(FILE_NAME);
         File file = new File(FILE_NAME);
         Scanner reader = null;
 
@@ -63,6 +65,32 @@ public class Highscore {
         reader.close();
     }
     
+    public void writeToFile(){
+        File file = new File(FILE_NAME);
+        String highscores = "";
+        
+        // put name + highscore to string
+        for(int i = 0; i < 10; i++){
+            highscores += names.get(i) + " " + scores.get(i) + "\n";
+        }
+        
+        //remove last linebreak
+        highscores = highscores.substring(0, highscores.length()-1);
+        
+        // try writing to file
+        try {			
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+	    BufferedWriter bw = new BufferedWriter(fw);
+            
+            bw.write(highscores);
+            bw.close();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
     public boolean isScoreInTopTen(int playerscore){
         if(playerscore > scores.get(9)){
             return true;
@@ -71,7 +99,7 @@ public class Highscore {
     }
     
     public void addScoreToTopTen(int playerscore, String playername){
-        for(int i = 0; i < scores.size(); i++){
+        for(int i = 0; i < 10; i++){
             if(playerscore > scores.get(i)){
                 scores.add(i, playerscore);
                 names.add(i, playername);
@@ -80,6 +108,8 @@ public class Highscore {
                 break;
             }
         }
+        this.writeToFile();
+        this.readFile();
     }
     
     
@@ -97,7 +127,6 @@ public class Highscore {
             graphics.drawString(name , 100, ypos+(i*30));
             graphics.drawString(score , 250, ypos+(i*30));
         }
-        
     }
 
 
