@@ -12,7 +12,10 @@ package doodlejump.peli;
 
 import doodlejump.peli.Direction;
 import java.util.*;
-
+/**
+ * A container and creator for the platforms
+ * @author Ivan
+ */
 public class PlatformContainer { 
   
         
@@ -22,6 +25,12 @@ public class PlatformContainer {
   private int windowHeight;
   private int windowWidth;
 
+  /**
+   * Creates a new container to create and hold the platforms that are then drawn
+   * on the screen
+   * @param windowWidth
+   * @param windowHeight 
+   */
     public PlatformContainer(int windowWidth, int windowHeight) {
         this.platforms = new ArrayList<Platform>();
         this.difficultyLevel = 0;
@@ -31,10 +40,14 @@ public class PlatformContainer {
         
         this.generatePlatforms();
     }
-
+    
+    /**
+     * Generate new platforms from the initial array of platform types
+     */
     public void reset(){
         generatePlatforms();
     }
+    
     public List<Platform> getPlatforms() {
         return platforms;
     }
@@ -51,6 +64,11 @@ public class PlatformContainer {
         this.difficultyLevel = difficultyLevel;
     }
     
+    /**
+     * Generates a new set of platforms on the screen according to the initial
+     * array of platform types given.
+     * Also puts the lowest platform under the Player when the game starts
+     */
     public void generatePlatforms(){
         if(platforms != null){
             platforms.clear();
@@ -72,12 +90,4 @@ public class PlatformContainer {
         // Put the lowest platform under Doodle so that it won't fall immediately at start
         platforms.get(7).setX(187);
     }
-    
-    
-    
-    
-    
-    
-
-
 }

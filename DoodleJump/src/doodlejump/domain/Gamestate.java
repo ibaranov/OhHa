@@ -4,8 +4,9 @@
  */
 package doodlejump.domain;
 
+
 /**
- *
+ * An Enum that allows to switch between game-states.
  * @author Ivan
  */
 public enum Gamestate {

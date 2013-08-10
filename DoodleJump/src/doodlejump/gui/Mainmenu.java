@@ -4,23 +4,22 @@
  */
 
 package doodlejump.gui; 
-
-/** 
- * 
- * @author Ivan 
- */ 
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.*;
 import javax.swing.ImageIcon;
-
+/**
+ * This class represents the Mainmenu of the game
+ * @author Ivan
+ */
 public class Mainmenu {
     
     
     private Image img;
     private String bgImageName;
-
+    /**
+     * Sets up a new main menu with the given image
+     */
     public Mainmenu() {
     
         bgImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\gui\\images\\bgimage.png";
@@ -30,7 +29,10 @@ public class Mainmenu {
     }
     
     
-
+    /**
+     * Draws the main menu
+     * @param graphics 
+     */
     public void piirra(Graphics graphics){
         graphics.drawImage(img, 0, 0, null);
     }

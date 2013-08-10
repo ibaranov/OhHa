@@ -3,9 +3,11 @@ import doodlejump.domain.Gamestate;
 import doodlejump.gui.Paivitettava;
 import doodlejump.peli.Player;
 import java.util.*;
-
-public class Peli { 
-  
+/**
+ * This class runs the game logic of the program.
+ * @author Ivan
+ */
+public class Peli {  
     
     private int width;
     private int height;
@@ -17,10 +19,13 @@ public class Peli {
     private Gamestate gamestate;
     private boolean doodleDead;
     
-
+    /**
+     * Sets up a new game
+     * @param width is the width of the game window
+     * @param height is the height of the game window
+     * 
+     */
     public Peli(int width, int height) {
-        
-        
         this.width = width;
         this.height = height;
         this.player = new Player(width, 250, Direction.INPLACE);
@@ -34,6 +39,9 @@ public class Peli {
         return player;
     }
     
+    /**
+     * Sets gamePaused to true/false
+     */
     public void pauseGame(){
         if(gamePaused){
             gamePaused = false;
@@ -42,11 +50,21 @@ public class Peli {
         }
     }
 
+    
+    /**
+     * Sets the boolean doodleDead so that program knows when player is dead
+     * and acts accordingly
+     * @param doodleDead 
+     */
     public void setDoodleDead(boolean doodleDead) {
         this.doodleDead = doodleDead;
     }
     
-    
+    /**
+     * Restarts the game. Player is set to original position, score is reset
+     * and new platforms are generated.
+     * 
+     */
     public void restart(){
         
         this.setGamestate(Gamestate.PAUSE);
@@ -60,11 +78,19 @@ public class Peli {
         paivitettava.setGamestate(gamestate);       
     }
     
+    
     public void setPaivitettava(Paivitettava paivitettava) {
         this.paivitettava = paivitettava;
     }
     
     
+    /**
+     * Main game run method with a variable time loop.
+     * This is used so that game speed tries to stick to the 60 FPS
+     * on fast and slow machines.
+     * 
+     * @throws InterruptedException 
+     */
     public void run() throws InterruptedException{
         
         long lastLoopTime = System.nanoTime();
@@ -72,8 +98,7 @@ public class Peli {
         final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;      
         
         while (gameRunning)
-        {    
-            
+        {
             long now = System.nanoTime();
             long updateLength = now - lastLoopTime;
             lastLoopTime = now;
@@ -94,16 +119,28 @@ public class Peli {
         }
     }
 
+    
     public Gamestate getGamestate() {
         return gamestate;
     }
     
-
+    
     public void setGamestate(Gamestate gamestate) {
         this.gamestate = gamestate;
     }
     
     
+    /**
+     * Does the following game updates:
+     *  Collision checking
+     *  Moving platforms
+     *  Creating new platforms
+     *  Checks if player dies and changes game-states
+     *  Makes addition to the score when platforms move down
+     *  Calls the Player move method
+     *  
+     * @param delta to adjust updates for variable time
+     */
     
     private void doGameUpdates(double delta){
         boolean addToScore = false;
@@ -122,8 +159,8 @@ public class Peli {
             }
         }
         
-        // Move platforms down and Create new platforms
         
+        // Move platforms down and Create new platforms
         for(int i = 0; i < platformContainer.getPlatforms().size(); i++){
             if(player.getyVelocity() < 0 && player.getY() <= 251){
                 platformContainer.getPlatforms().get(i).addToY(-player.getyVelocity());
@@ -141,7 +178,6 @@ public class Peli {
                 } else if(platformType == 3){
                     platformContainer.getPlatforms().set(i, new PlatformDissapearing(width , 0));
                 }
-                
             }
         }
         
@@ -169,9 +205,13 @@ public class Peli {
             player.addToScore(-player.getyVelocity());
         }
         
-        player.Move(delta);
+        player.move(delta);
     }
-
+    
+    /**
+     * Returns the list of platforms
+     * @return list of platforms
+     */
     public List<Platform> getPlatforms() {
         return platformContainer.getPlatforms();
     }

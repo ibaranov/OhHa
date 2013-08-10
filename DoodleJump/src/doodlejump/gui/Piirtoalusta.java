@@ -12,7 +12,10 @@ import java.awt.Container;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-
+/**
+ * A Class that is responsible for drawing everything on the screen
+ * @author Ivan
+ */
 public class Piirtoalusta extends JPanel implements Paivitettava{
 
     private Player player;
@@ -23,6 +26,17 @@ public class Piirtoalusta extends JPanel implements Paivitettava{
     private Gameover gameover;
     private Highscore highscore;
     
+    /**
+     * Constructor that sets up the background of the screen and takes the 
+     * different screens of the game as parameters.
+     * 
+     * @param player The player
+     * @param plats The platforms
+     * @param splash Splash-screen
+     * @param mainmenu Main menu screen
+     * @param gameover Game over screen
+     * @param highscore High score screen
+     */
     
     public Piirtoalusta(Player player, List<Platform> plats, Splash splash, Mainmenu mainmenu, Gameover gameover, Highscore highscore) {
         this.player = player;
@@ -37,21 +51,38 @@ public class Piirtoalusta extends JPanel implements Paivitettava{
     }
 
     
-    
+    /**
+     * Sets the state of the game
+     * @param gamestate 
+     */
     public void setGamestate(Gamestate gamestate) {
         this.gamestate = gamestate;
     }
-
+    
+    /**
+     * Sets a new player
+     * @param player 
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }
 
+    /**
+     * Sets a new list of platforms to draw
+     * @param plats 
+     */
     public void setPlats(List<Platform> plats) {
         this.plats = plats;
     }
 
     
-    
+    /**
+     * Method that calls all components paint themselves on the screen.
+     * This methods also includes a Switch case structure to switch between
+     * different gamestates, so that only the current gamestate is drawn on
+     * the screen.
+     * @param graphics 
+     */
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
@@ -97,8 +128,4 @@ public class Piirtoalusta extends JPanel implements Paivitettava{
     public void paivita() {
         this.repaint();
     }
-    
-    
-    
-    
 }

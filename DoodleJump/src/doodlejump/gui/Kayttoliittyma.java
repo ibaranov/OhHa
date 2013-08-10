@@ -9,7 +9,10 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.*;
-
+/**
+ * GUi of the game.
+ * @author Ivan
+ */
 public class Kayttoliittyma implements Runnable {
 
     private JFrame frame;
@@ -18,12 +21,16 @@ public class Kayttoliittyma implements Runnable {
     private int windowWidth;
     private int windowHeight;
     
+    /**
+     * The constructor also sets the game window height and width
+     * @param peli the game that will be controlled by this GUI
+     */
     public Kayttoliittyma(Peli peli) {
         this.peli = peli;
         this.windowHeight = 600;
-        this.windowWidth = 400;
-        
+        this.windowWidth = 400; 
     }
+    
     
     @Override
     public void run() {
@@ -40,6 +47,17 @@ public class Kayttoliittyma implements Runnable {
         frame.setVisible(true);
     }
 
+    /**
+     * Method that creates all GUI components, the new Piirtoalusta 
+     * {@link Piirtoalusta} and add a new Key- and MouseListener {@link Nappaimistonkuuntelija}
+     * Gui components:
+     *  Splash screen
+     *  Main menu screen
+     *  Highscore screen
+     *  Gameover screen
+     * 
+     * @param container 
+     */
     private void luoKomponentit(Container container) {
         Splash splash = new Splash();
         Mainmenu main = new Mainmenu();
@@ -61,11 +79,15 @@ public class Kayttoliittyma implements Runnable {
     }
 
    
-
+    
     public JFrame getFrame() {
         return frame;
     }
     
+    /**
+     * 
+     * @return Piirtoalusta 
+     */
     public Paivitettava getPaivitettava(){
         return piirtoalusta;
     }

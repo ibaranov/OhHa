@@ -9,14 +9,22 @@ import doodlejump.peli.Direction;
 import java.awt.Graphics;
 import java.util.*;
 import javax.swing.ImageIcon;
-
+/**
+ * Class represents a moving platform.
+ * @author Ivan
+ */
 public class PlatformMoving extends Platform{ 
 
     private Direction direction;
     private int xVelocity;
     
-    public PlatformMoving(int width, int y) {
-        super(width, y);
+    /**
+     * Creates a new moving platform
+     * @param screenWidth
+     * @param y 
+     */
+    public PlatformMoving(int screenWidth, int y) {
+        super(screenWidth, y);
         this.direction = Direction.LEFT;
         super.setPlatName("C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\platformMoving.png");
         super.setType(2);
@@ -29,15 +37,25 @@ public class PlatformMoving extends Platform{
         super.setImg(ii.getImage());
     }
   
+    /**
+     * Increases the x-axis velocity of the platform
+     * @param xVel 
+     */
     public void addToX(double xVel) {
         super.increaseX(xVel);
     }
-    
+    /**
+     * Draws the platform on the screen
+     * @param graphics 
+     */
     public void piirra(Graphics graphics){
         this.move();
         graphics.drawImage(super.getImg(), super.getX(), super.getY(), null);
     }
     
+    /**
+     * Moves the platform from one edge of the screen to another
+     */
     public void move(){
      
         if(direction == Direction.LEFT){
