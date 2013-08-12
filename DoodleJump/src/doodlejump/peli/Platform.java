@@ -27,7 +27,7 @@ public class Platform {
         this.platformWidth = 50;
         this.x = random.nextInt(screenWidth - platformWidth - 15);
         this.y = y;
-        this.platName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\platform1.png";
+        this.platName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\cloud_basic.png";
         this.type = 1;
         this.bouncedOn = false;
         

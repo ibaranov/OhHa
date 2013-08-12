@@ -23,6 +23,7 @@ public class Player {
     private int width;
     String playerImageName;
     
+    
     /**
      * Sets up a new Player
      * 
@@ -38,7 +39,8 @@ public class Player {
         this.yVelocity = 0;
         this.score = 0;
         this.width = width;
-        this.playerImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\doodle40.png";
+        this.playerImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\frog.png";
+        
         
         ImageIcon ii = new ImageIcon(this.playerImageName);
         this.img = ii.getImage();
@@ -49,6 +51,7 @@ public class Player {
     public double getGravity() {
         return gravity;
     }
+    
     
     /**
      * When player reaches the center of the screen, he doesn't move any higher,

@@ -171,6 +171,7 @@ public class Peli {
                 
                 Random random = new Random();
                 int platformType = 1 + random.nextInt((3+1)-1);
+                
                 if(platformType == 1){
                     platformContainer.getPlatforms().set(i, new Platform(width , 0));
                 } else if (platformType == 2){

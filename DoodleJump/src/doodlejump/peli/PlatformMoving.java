@@ -26,7 +26,7 @@ public class PlatformMoving extends Platform{
     public PlatformMoving(int screenWidth, int y) {
         super(screenWidth, y);
         this.direction = Direction.LEFT;
-        super.setPlatName("C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\platformMoving.png");
+        super.setPlatName("C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\cloud_moving.png");
         super.setType(2);
         
         Random random = new Random();
