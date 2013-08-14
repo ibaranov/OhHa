@@ -146,41 +146,10 @@ public class Peli {
         boolean addToScore = false;
         
         // Check collision with platforms
-        for(Platform p : platformContainer.getPlatforms()){
-            if(player.collidesWithPlatform(p)==true && !player.getIfJumping()){
-                if(p.getType() != 3 || !p.getBouncedOn()){
-                    player.jump(delta);
-                }
-                // Collision with dissapearing platforms
-                if(p.getType() == 3){
-                    p.dissapear();
-                }
-                break;
-            }
-        }
+        platformContainer.checkCollisionWithPlatforms(player, delta);
         
-        
-        // Move platforms down and Create new platforms
-        for(int i = 0; i < platformContainer.getPlatforms().size(); i++){
-            if(player.getyVelocity() < 0 && player.getY() <= 251){
-                platformContainer.getPlatforms().get(i).addToY(-player.getyVelocity());
-                addToScore = true;
-            }
-            
-            if(platformContainer.getPlatforms().get(i).getY() > height - 50){
-                
-                Random random = new Random();
-                int platformType = 1 + random.nextInt((3+1)-1);
-                
-                if(platformType == 1){
-                    platformContainer.getPlatforms().set(i, new Platform(width , 0));
-                } else if (platformType == 2){
-                    platformContainer.getPlatforms().set(i, new PlatformMoving(width , 0));
-                } else if(platformType == 3){
-                    platformContainer.getPlatforms().set(i, new PlatformDissapearing(width , 0));
-                }
-            }
-        }
+        // Move platforms down and Create new platforms. If platforms are moved down, addToScore = true;
+        addToScore = platformContainer.moveAndCreatePlatforms(addToScore, player, width, height);
         
         // If doodle falls, then show ending
         if( ( player.getY() + player.getHeight() ) > (height - 40) && !doodleDead ){
@@ -201,11 +170,11 @@ public class Peli {
                 }
         }
         
-        
         if(addToScore){
             player.addToScore(-player.getyVelocity());
         }
         
+        // If the game continues, always keep the player moving.
         player.move(delta);
     }
     

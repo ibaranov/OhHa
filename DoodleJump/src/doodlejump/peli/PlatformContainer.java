@@ -65,6 +65,63 @@ public class PlatformContainer {
     }
     
     /**
+     * Check whether the player collides with any of the platforms.
+     * @param player
+     * @param delta 
+     */
+    public void checkCollisionWithPlatforms(Player player, double delta){
+        
+        for(Platform p : this.getPlatforms()){
+            if(player.collidesWithPlatform(p)==true && !player.getIfJumping()){
+                if(p.getType() != 3 || !p.getBouncedOn()){
+                    player.jump(delta);
+                }
+                // Collision with dissapearing platforms
+                if(p.getType() == 3){
+                    p.dissapear();
+                }
+                break;
+            }
+        }
+        
+    }
+    
+    /**
+     * Move platforms down when player character reaches the half of the screen.
+     * Platform are moved downwards a distance that reflects the remaining
+     * velocity of the player after he reaches the half of the screen.
+     * @param addToScore boolean that tells the program to either increase or not increase the score.
+     * @param player
+     * @param width is the width of the screen
+     * @param height is the height of the screen
+     * @return true if platforms are moved downwards and score increases, or
+     * false if this does not happen.
+     */
+    public boolean moveAndCreatePlatforms(boolean addToScore, Player player, int width, int height){
+        for(int i = 0; i < this.getPlatforms().size(); i++){
+            if(player.getyVelocity() < 0 && player.getY() <= 251){
+                this.getPlatforms().get(i).addToY(-player.getyVelocity());
+                addToScore = true;
+            }
+            
+            if(this.getPlatforms().get(i).getY() > height - 50){
+                Random random = new Random();
+                int platformType = 1 + random.nextInt((3+1)-1);
+                
+                if(platformType == 1){
+                    this.getPlatforms().set(i, new Platform(width , 0));
+                } else if (platformType == 2){
+                    this.getPlatforms().set(i, new PlatformMoving(width , 0));
+                } else if(platformType == 3){
+                    this.getPlatforms().set(i, new PlatformDissapearing(width , 0));
+                }
+            }
+        }
+        
+        return addToScore;
+    }
+    
+    /**
      * Generates a new set of platforms on the screen according to the initial
      * array of platform types given.
      * Also puts the lowest platform under the Player when the game starts
