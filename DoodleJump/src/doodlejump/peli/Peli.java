@@ -30,7 +30,7 @@ public class Peli {
         this.height = height;
         this.player = new Player(width, 250, Direction.INPLACE);
         this.gameRunning = true;
-        this.platformContainer = new PlatformContainer(width, height);
+        this.platformContainer = new PlatformContainer(width, height, player);
         this.gamestate = Gamestate.SPLASH;
         this.doodleDead = false;
     }
@@ -148,7 +148,8 @@ public class Peli {
         // Check collision with platforms
         platformContainer.checkCollisionWithPlatforms(player, delta);
         
-        // Move platforms down and Create new platforms. If platforms are moved down, addToScore = true;
+        // Move platforms down and Create new platforms to replace the old ones. 
+        //If platforms are moved down, addToScore = true;
         addToScore = platformContainer.moveAndCreatePlatforms(addToScore, player, width, height);
         
         // If doodle falls, then show ending
