@@ -1,10 +1,10 @@
+ok 1225
+ok 389
+ok 203
+ok 188
+rrr 188
 frog 100
 frog 100
 frog 100
 frog 100
 frog 100
-frog 100
-frog 100
-frog 100
-frog 100
-from 100

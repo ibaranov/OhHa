@@ -46,6 +46,7 @@ public class Gameover {
      */
     public void reset(){
         this.playerName = "";
+        this.score = 0;
     }
     
     
