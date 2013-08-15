@@ -125,11 +125,18 @@ public class Player {
         }
         //************************
     }
-
+    
+    public void moveByXandY(int nx, int ny){
+        this.x += nx;
+        this.y += ny;
+    }
     public void setX(double x) {
         this.x = x;
     }
 
+    public void setY(double y) {
+        this.y = y;
+    }
     
     
     public double getyVelocity() {

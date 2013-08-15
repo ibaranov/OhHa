@@ -34,7 +34,8 @@ public class PlatformContainerTest {
     @Before
     public void setUp() {
         System.out.println("Setup a Platformcontainer");
-        platformcontainer = new PlatformContainer(400, 600);
+        Player player = new Player(400, 200, Direction.INPLACE);
+        platformcontainer = new PlatformContainer(400, 600, player);
     }
     
     @After
@@ -73,7 +74,7 @@ public class PlatformContainerTest {
     @Test
     public void testGetPlatformTypes() {
         System.out.println("getPlatformTypes");
-        List expResult = new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1, 1, 1, 1)); 
+        List expResult = new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)); 
         List result = platformcontainer.getPlatformTypes();
         assertEquals(expResult, result);
     }
@@ -111,9 +112,23 @@ public class PlatformContainerTest {
         List types = platformcontainer.getPlatformTypes();
         Platform testplat = new Platform(400, 100);
         
-        int numberOfPlatforms = types.size();
+        int numberOfPlatforms = 8;
         for(int i = 0; i < numberOfPlatforms; i++){
             assertEquals(result.get(i).getClass(), testplat.getClass());
         }
+    }
+    
+    @Test
+    public void checkCollisionWithPlatforms() {
+        System.out.println("checkCollisionWithPlatforms");
+        List result = platformcontainer.getPlatforms();
+        
+        
+    }
+    
+    
+    @Test
+    public void moveAndCreatePlatforms(){
+        
     }
 }

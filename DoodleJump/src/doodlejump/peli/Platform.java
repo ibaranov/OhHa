@@ -140,7 +140,7 @@ public class Platform {
     public void dissapear() {    
     }
     /**
-     * This method is made for the disappearing platform so it dissapears
+     * This method is made for the disappearing platform so it disappears
      * when it gets bounced on/
      * @return true if the platform is bounced on
      */

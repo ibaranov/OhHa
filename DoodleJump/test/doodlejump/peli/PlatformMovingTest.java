@@ -17,24 +17,33 @@ import static org.junit.Assert.*;
  * @author Ivan
  */
 public class PlatformMovingTest {
+    private PlatformMoving platform;
     
     public PlatformMovingTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        System.out.println("Set up class");
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
+   
     
     @Before
     public void setUp() {
+        System.out.println("Setup a Platform");
+        platform = new PlatformMoving(400, 100);
     }
     
     @After
     public void tearDown() {
+        System.out.println(" = Teardown");
+        platform = null;
+    }
+    
+     @AfterClass
+    public static void tearDownClass() {
+        System.out.println("Tear down class");
     }
 
     /**
@@ -43,25 +52,15 @@ public class PlatformMovingTest {
     @Test
     public void testAddToX() {
         System.out.println("addToX");
-        double xVel = 0.0;
-        PlatformMoving instance = null;
-        instance.addToX(xVel);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        double xVel = 12;
+        int oldX = platform.getX();
+        platform.increaseX(xVel);
+        assertEquals(platform.getX(), 12+oldX);
+        
+        
     }
 
-    /**
-     * Test of piirra method, of class PlatformMoving.
-     */
-    @Test
-    public void testPiirra() {
-        System.out.println("piirra");
-        Graphics graphics = null;
-        PlatformMoving instance = null;
-        instance.piirra(graphics);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of move method, of class PlatformMoving.
@@ -69,9 +68,24 @@ public class PlatformMovingTest {
     @Test
     public void testMove() {
         System.out.println("move");
-        PlatformMoving instance = null;
-        instance.move();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        int xVel = platform.getxVelocity();
+        int oldX = platform.getX();
+        // test moving left
+        platform.move();
+        assertEquals(platform.getX(), oldX-xVel);
+        
+        // test changing direction to right 
+        platform.setX(-1);
+        platform.move();
+        assertEquals(platform.getDirection(), Direction.RIGHT);
+        
+        // test changing direction to left
+        platform.setX(380);
+        platform.move();
+        // test moving right
+        assertEquals(platform.getX(), 380+xVel);
+        
+        assertEquals(platform.getDirection(), Direction.LEFT);
     }
 }

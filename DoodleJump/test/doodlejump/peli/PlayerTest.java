@@ -46,21 +46,7 @@ public class PlayerTest {
         System.out.println("Tear down class");
     }
     
-    /**
-     * Test of siirra method, of class Player.
-     */
-    @Test
-    public void testSiirra() {
-        System.out.println("siirra");
-        double dx = 10;
-        double dy = 10;
-        
-        player.siirra(dx, dy);
-        
-        assertEquals(player.getX(), 210, 0.0001 );
-        assertEquals(player.getY(), 210, 0.0001 );
-        
-    }
+   
 
     /**
      * Test of addToScore method, of class Player.
@@ -112,41 +98,41 @@ public class PlayerTest {
     }
 
     /**
-     * Test of Move method, of class Player.
+     * Test of move method, of class Player.
      */
     @Test
-    public void testMove() {
-        System.out.println("Move");
+    public void testmove() {
+        System.out.println("move");
         double delta = 1;
         // Test movement along the x-axis and y-axis
         player.setDirection(Direction.RIGHT);
-        player.Move(delta);
+        player.move(delta);
         assertEquals(player.getY(), 250, 0.0001);
         assertEquals(player.getX(), 200+2, 0.0);
         player.setDirection(Direction.LEFT);
-        player.Move(delta);
-        player.Move(delta);
-        double yVelocityAfterThreeMoves = 0.5 + 0.75; 
+        player.move(delta);
+        player.move(delta);
+        double yVelocityAfterThreemoves = 0.5 + 0.75; 
         assertEquals(player.getX(), 200-2, 0.0);
-        assertEquals(player.getY(), 250 + yVelocityAfterThreeMoves, 0.0001);
+        assertEquals(player.getY(), 250 + yVelocityAfterThreemoves, 0.0001);
         
         // test x-axis acceleration limits
         player.setAcceleration(40);
-        player.Move(delta);
+        player.move(delta);
         assertEquals(player.getxVelocity(), 20, 0.0);
         player.setAcceleration(-40);
-        player.Move(delta);
+        player.move(delta);
         assertEquals(player.getxVelocity(), -20, 0.0);
         
         // Test reappearing on other side of screen
         player.reset();
         player.setX(385);
-        player.Move(delta);
+        player.move(delta);
         assertEquals(player.getX(), -36/2, 0.0);
         
         player.reset();
         player.setX(-25);
-        player.Move(delta);
+        player.move(delta);
         assertEquals(player.getX(), 400-36/2, 0.0);
         
     }
@@ -205,10 +191,10 @@ public class PlayerTest {
         Platform platform = new Platform(400, 100);
         int platformx = platform.getX();
         int platformy = platform.getY();
-        int playerMustMoveX = (int) ((platformx - player.getX()));
-        int playerMustMoveY = (int) ((platformy - player.getY())) - player.getHeight();
+        int playerMustmoveX = (int) ((platformx - player.getX()));
+        int playerMustmoveY = (int) ((platformy - player.getY())) - player.getHeight();
         
-        player.siirra(playerMustMoveX, playerMustMoveY);
+        player.moveByXandY(playerMustmoveX, playerMustmoveY);
        
         boolean expResult = true;
         boolean result = player.collidesWithPlatform(platform);
@@ -231,10 +217,10 @@ public class PlayerTest {
      * Test of zeroAcceleration method, of class Player.
      */
     @Test
-    public void testZeroAcceleration() {
-        System.out.println("zeroAcceleration");
+    public void testZeroXAcceleration() {
+        System.out.println("zeroXAcceleration");
         
-        player.zeroAcceleration();
+        player.zeroXAcceleration();
         assertEquals(player.getyVelocity(), 0, 0.0);
     }
 
@@ -283,16 +269,7 @@ public class PlayerTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of getHeight method, of class Player.
-     */
-    @Test
-    public void testGetHeight() {
-        System.out.println("getHeight");
-        int expResult = 38;
-        int result = player.getHeight();
-        assertEquals(expResult, result);   
-    }
+    
 
     /**
      * Test of getScore method, of class Player.

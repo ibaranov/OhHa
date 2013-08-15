@@ -67,6 +67,9 @@ public class PlatformContainer {
         return difficultyLevel;
     }
     
+    /**
+     * Increases the difficulty level of the game in relation to player's score.
+     */
     public void increaseDifficultylevel(){
         this.difficultyLevel = player.getScore()/2000;
         

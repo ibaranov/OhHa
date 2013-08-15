@@ -17,25 +17,35 @@ import static org.junit.Assert.*;
  * @author Ivan
  */
 public class PlatformDissapearingTest {
+    private PlatformDissapearing platform;
     
     public PlatformDissapearingTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        System.out.println("Set up class");
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
+   
     
     @Before
     public void setUp() {
+        System.out.println("Setup a Platform");
+        platform = new PlatformDissapearing(400, 100);
     }
     
     @After
     public void tearDown() {
+        System.out.println(" = Teardown");
+        platform = null;
     }
+    
+     @AfterClass
+    public static void tearDownClass() {
+        System.out.println("Tear down class");
+    }
+
 
     /**
      * Test of dissapear method, of class PlatformDissapearing.
@@ -43,22 +53,10 @@ public class PlatformDissapearingTest {
     @Test
     public void testDissapear() {
         System.out.println("dissapear");
-        PlatformDissapearing instance = null;
-        instance.dissapear();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        platform.dissapear();
+        // nothing really to test
+        
     }
 
-    /**
-     * Test of piirra method, of class PlatformDissapearing.
-     */
-    @Test
-    public void testPiirra() {
-        System.out.println("piirra");
-        Graphics graphics = null;
-        PlatformDissapearing instance = null;
-        instance.piirra(graphics);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 }
