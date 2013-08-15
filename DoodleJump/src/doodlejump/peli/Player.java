@@ -80,6 +80,11 @@ public class Player {
         jumping = true;
         yVelocity = -16*delta;
     }
+
+    public void setJumping(boolean jumping) {
+        this.jumping = jumping;
+    }
+    
     
     /**
      * 

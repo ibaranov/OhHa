@@ -110,7 +110,6 @@ public class PlatformContainer {
                 break;
             }
         }
-        
     }
     
     /**
@@ -172,7 +171,7 @@ public class PlatformContainer {
             if(this.getPlatforms().get(i).getY() > height - 50){
                 Random random = new Random();
                 int platformType = platformTypes.get(random.nextInt(platformTypes.size()-1));
-                System.out.println("RAND> " + platformType);
+                
                 if(platformType == 1){
                     this.getPlatforms().set(i, new Platform(width , 0));
                 } else if (platformType == 2){

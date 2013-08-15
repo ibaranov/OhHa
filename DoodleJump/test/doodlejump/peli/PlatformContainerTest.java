@@ -21,6 +21,7 @@ import static org.junit.Assert.*;
 public class PlatformContainerTest {
     
     private PlatformContainer platformcontainer;
+    private Player player;
     
     public PlatformContainerTest() {
     }
@@ -34,7 +35,7 @@ public class PlatformContainerTest {
     @Before
     public void setUp() {
         System.out.println("Setup a Platformcontainer");
-        Player player = new Player(400, 200, Direction.INPLACE);
+        this.player = new Player(400, 200, Direction.INPLACE);
         platformcontainer = new PlatformContainer(400, 600, player);
     }
     
@@ -122,13 +123,52 @@ public class PlatformContainerTest {
     public void checkCollisionWithPlatforms() {
         System.out.println("checkCollisionWithPlatforms");
         List result = platformcontainer.getPlatforms();
+        int playerX = (int) player.getX();
+        int playerY = (int) player.getY();
         
+        double delta = 1;
+        // check collision when player is NOT colliding with platforms
+        platformcontainer.checkCollisionWithPlatforms(player, delta);
+        assertEquals(player.getyVelocity(), 0, 0.001);
+        
+        // check collision when player IS colliding with platforms
+        int platformx = platformcontainer.getPlatforms().get(7).getX();
+        int platformy = platformcontainer.getPlatforms().get(7).getY();
+        
+        int playerMustmoveX = (int) ((platformx - player.getX()));
+        int playerMustmoveY = (int) ((platformy - player.getY())) - player.getHeight();
+        
+        player.moveByXandY(playerMustmoveX, playerMustmoveY);
+        player.setJumping(false);
+        
+        platformcontainer.checkCollisionWithPlatforms(player, delta);
+        
+        assertEquals(player.getyVelocity(), -16, 0.001);
         
     }
     
     
     @Test
     public void moveAndCreatePlatforms(){
+        
+        player.setY(250);
+        // Set player velocity to < 0
+        player.jump(1);
+        
+        // test add to score
+        boolean expResult = true;
+        boolean result = platformcontainer.moveAndCreatePlatforms(false, player, 400, 600);
+        
+        assertEquals(expResult, result);
+        
+        // test creation of new platforms
+        
+        // set platform beyond the screen and test creation of new platform
+        platformcontainer.getPlatforms().get(0).setY(550);
+        result = platformcontainer.moveAndCreatePlatforms(false, player, 400, 600);
+        
+        assertEquals(platformcontainer.getPlatforms().get(0).getY(), 0);
+        
         
     }
 }

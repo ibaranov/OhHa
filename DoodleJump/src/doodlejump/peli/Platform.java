@@ -41,6 +41,16 @@ public class Platform {
     public void setPlatName(String platName) {
         this.platName = platName;
     }
+
+    /**
+     * set Y
+     * @param y 
+     */
+    public void setY(int y) {
+        this.y = y;
+    }
+    
+    
     /**
      * Sets the platform type
      * @param type 
