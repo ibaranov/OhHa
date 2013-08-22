@@ -68,7 +68,7 @@ public class Interface implements Runnable {
         // Create text field for gameover screen
        
         // create piirtoalusta
-        piirtoalusta = new CanvasDrawer(peli.getPlayer(), peli.getPlatforms(), splash, main, gameover, highscore);
+        piirtoalusta = new CanvasDrawer(peli.getPlayer(), peli.getPlatformContainer(), splash, main, gameover, highscore);
         
         container.add(piirtoalusta);
         

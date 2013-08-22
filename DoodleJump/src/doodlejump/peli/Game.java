@@ -14,7 +14,7 @@ public class Game {
     private Player player;
     private boolean gameRunning;
     private boolean gamePaused;
-    private Updateable paivitettava;
+    private Updateable updateable;
     private PlatformContainer platformContainer;
     private Gamestate gamestate;
     private boolean doodleDead;
@@ -74,8 +74,8 @@ public class Game {
     }
     
     
-    public void setUpdateable(Updateable paivitettava) {
-        this.paivitettava = paivitettava;
+    public void setUpdateable(Updateable updateable) {
+        this.updateable = updateable;
     }
     
     
@@ -103,7 +103,7 @@ public class Game {
                 doGameUpdates(delta);
             }
             if(gamestate != Gamestate.PAUSE){
-                paivitettava.paivita();
+                updateable.paivita();
             } 
             
             try{
@@ -164,7 +164,7 @@ public class Game {
                 // When doodle finally falls below the screen, show gameover screen.
                 if(player.getY() > 600){
                     gamestate = Gamestate.GAMEOVER;
-                    paivitettava.setGamestate(gamestate);
+                    updateable.setGamestate(gamestate);
                 }
         }
         

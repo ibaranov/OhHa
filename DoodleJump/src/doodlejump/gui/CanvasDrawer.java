@@ -4,6 +4,7 @@ import doodlejump.domain.Gamestate;
 import static doodlejump.domain.Gamestate.GAMEOVER;
 import static doodlejump.domain.Gamestate.MAINMENU;
 import doodlejump.peli.Platform;
+import doodlejump.peli.PlatformContainer;
 import doodlejump.peli.Player;
 import java.util.*;
 import javax.swing.JPanel;
@@ -25,28 +26,29 @@ public class CanvasDrawer extends JPanel implements Updateable{
     private Mainmenu mainmenu;
     private Gameover gameover;
     private Highscore highscore;
+    private PlatformContainer platformcontainer;
     
     /**
      * Constructor that sets up the background of the screen and takes the 
      * different screens of the game as parameters.
      * 
      * @param player The player
-     * @param plats The platforms
+     * @param platformcontainer The platform container
      * @param splash Splash-screen
      * @param mainmenu Main menu screen
      * @param gameover Game over screen
      * @param highscore High score screen
      */
     
-    public CanvasDrawer(Player player, List<Platform> plats, Splash splash, Mainmenu mainmenu, Gameover gameover, Highscore highscore) {
+    public CanvasDrawer(Player player, PlatformContainer platformcontainer, Splash splash, Mainmenu mainmenu, Gameover gameover, Highscore highscore) {
         this.player = player;
-        this.plats = plats;
         super.setBackground(Color.WHITE);
         this.splash = splash;
         this.mainmenu = mainmenu;
         this.gamestate = Gamestate.SPLASH;
         this.gameover = gameover;
         this.highscore = highscore;
+        this.platformcontainer = platformcontainer;
       
     }
 
@@ -97,11 +99,7 @@ public class CanvasDrawer extends JPanel implements Updateable{
             case GAME: 
                         
                         // Piirra alustat
-                        if(plats.size() > 0){
-                            for(Platform p : plats){
-                                p.piirra(graphics);
-                            }
-                        }
+                        platformcontainer.drawPlatforms(graphics);
                         // Piirra pelaaja
                         player.piirra(graphics);
                         break;

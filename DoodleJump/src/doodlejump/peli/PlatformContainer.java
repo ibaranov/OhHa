@@ -11,6 +11,7 @@ package doodlejump.peli;
  */ 
 
 import doodlejump.peli.Direction;
+import java.awt.Graphics;
 import java.util.*;
 /**
  * A container and creator for the platforms. 
@@ -177,5 +178,11 @@ public class PlatformContainer {
         return addToScore;
     }
     
-    
+    public void drawPlatforms(Graphics graphics){
+        if(platforms.size() > 0){
+            for(Platform p : platforms){
+                p.piirra(graphics);
+            }
+        }
+    }
 }
