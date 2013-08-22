@@ -1,8 +1,8 @@
 package doodlejump.gui;
 
-import doodlejump.gui.NappaimistonKuuntelija;
+import doodlejump.gui.DoodleKeyListener;
 import doodlejump.peli.Platform;
-import doodlejump.peli.Peli;
+import doodlejump.peli.Game;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -13,11 +13,11 @@ import javax.swing.*;
  * GUi of the game.
  * @author Ivan
  */
-public class Kayttoliittyma implements Runnable {
+public class Interface implements Runnable {
 
     private JFrame frame;
-    private Piirtoalusta piirtoalusta;
-    private Peli peli;
+    private CanvasDrawer piirtoalusta;
+    private Game peli;
     private int windowWidth;
     private int windowHeight;
     
@@ -25,7 +25,7 @@ public class Kayttoliittyma implements Runnable {
      * The constructor also sets the game window height and width
      * @param peli the game that will be controlled by this GUI
      */
-    public Kayttoliittyma(Peli peli) {
+    public Interface(Game peli) {
         this.peli = peli;
         this.windowHeight = 600;
         this.windowWidth = 400; 
@@ -48,8 +48,8 @@ public class Kayttoliittyma implements Runnable {
     }
 
     /**
-     * Method that creates all GUI components, the new Piirtoalusta 
-     * {@link Piirtoalusta} and add a new Key- and MouseListener {@link Nappaimistonkuuntelija}
+     * Method that creates all GUI components, the new CanvasDrawer 
+     * {@link CanvasDrawer} and add a new Key- and MouseListener {@link Nappaimistonkuuntelija}
      * Gui components:
      *  Splash screen
      *  Main menu screen
@@ -68,11 +68,11 @@ public class Kayttoliittyma implements Runnable {
         // Create text field for gameover screen
        
         // create piirtoalusta
-        piirtoalusta = new Piirtoalusta(peli.getPlayer(), peli.getPlatforms(), splash, main, gameover, highscore);
+        piirtoalusta = new CanvasDrawer(peli.getPlayer(), peli.getPlatforms(), splash, main, gameover, highscore);
         
         container.add(piirtoalusta);
         
-        NappaimistonKuuntelija nk = new NappaimistonKuuntelija(piirtoalusta, peli.getPlayer(), peli, gameover);
+        DoodleKeyListener nk = new DoodleKeyListener(piirtoalusta, peli.getPlayer(), peli, gameover);
         frame.addKeyListener(nk);
         frame.addMouseListener(nk);
         
@@ -86,9 +86,9 @@ public class Kayttoliittyma implements Runnable {
     
     /**
      * 
-     * @return Piirtoalusta 
+     * @return CanvasDrawer 
      */
-    public Paivitettava getPaivitettava(){
+    public Updateable getPaivitettava(){
         return piirtoalusta;
     }
  

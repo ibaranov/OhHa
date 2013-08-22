@@ -17,9 +17,12 @@ import java.util.*;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 /**
- * Instance of the Gameover game state.
+ * Instance of the Gameover game state. Shows the gameover screen with options 
+ * to either write a name for given highscore or another screen with options to
+ * replay the game.
  * @author Ivan
  */
+
 public class Gameover { 
   
     private Image img;

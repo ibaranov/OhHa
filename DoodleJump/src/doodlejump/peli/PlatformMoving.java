@@ -71,6 +71,7 @@ public class PlatformMoving extends Platform{
         }
     }
 
+    
     public Direction getDirection() {
         return direction;
     }

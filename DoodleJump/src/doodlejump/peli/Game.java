@@ -1,20 +1,20 @@
 package doodlejump.peli; 
 import doodlejump.domain.Gamestate;
-import doodlejump.gui.Paivitettava;
+import doodlejump.gui.Updateable;
 import doodlejump.peli.Player;
 import java.util.*;
 /**
  * This class runs the game logic of the program.
  * @author Ivan
  */
-public class Peli {  
+public class Game {  
     
     private int width;
     private int height;
     private Player player;
     private boolean gameRunning;
     private boolean gamePaused;
-    private Paivitettava paivitettava;
+    private Updateable paivitettava;
     private PlatformContainer platformContainer;
     private Gamestate gamestate;
     private boolean doodleDead;
@@ -25,7 +25,7 @@ public class Peli {
      * @param height is the height of the game window
      * 
      */
-    public Peli(int width, int height) {
+    public Game(int width, int height) {
         this.width = width;
         this.height = height;
         this.player = new Player(width, 250, Direction.INPLACE);
@@ -67,19 +67,14 @@ public class Peli {
      */
     public void restart(){
         
-        this.setGamestate(Gamestate.PAUSE);
-        paivitettava.setGamestate(gamestate);
-        
         this.setDoodleDead(false);
         this.player.reset();
         this.platformContainer.reset();
         
-        this.setGamestate(Gamestate.GAME);
-        paivitettava.setGamestate(gamestate);       
     }
     
     
-    public void setPaivitettava(Paivitettava paivitettava) {
+    public void setUpdateable(Updateable paivitettava) {
         this.paivitettava = paivitettava;
     }
     
@@ -151,6 +146,8 @@ public class Peli {
         // Move platforms down and Create new platforms to replace the old ones. 
         //If platforms are moved down, addToScore = true;
         addToScore = platformContainer.moveAndCreatePlatforms(addToScore, player, width, height);
+        
+        
         
         // If doodle falls, then show ending
         if( ( player.getY() + player.getHeight() ) > (height - 40) && !doodleDead ){

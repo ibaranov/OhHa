@@ -71,7 +71,7 @@ public class PlatformContainer {
      * Increases the difficulty level of the game in relation to player's score.
      */
     public void increaseDifficultylevel(){
-        this.difficultyLevel = player.getScore()/2000;
+        this.difficultyLevel = player.getScore()/1000;
         
         if(this.difficultyLevel == 0){
             this.platformTypes = new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1));
@@ -126,17 +126,8 @@ public class PlatformContainer {
         int numberOfPlatforms = 8;
         int platformHeight = (windowHeight-60) / numberOfPlatforms;
         
-        Random random = new Random();
-        int platformType = platformTypes.get(random.nextInt(platformTypes.size()-1));
-        
         for(int i = 0; i < numberOfPlatforms; i++){
-            if(platformType == 1){
                 platforms.add(new Platform(windowWidth, (i)*platformHeight));
-            } else if(platformType == 2) {
-                platforms.add(new PlatformMoving(windowWidth, (i)*platformHeight));
-            } else if(platformType == 3) {
-                platforms.add(new PlatformDissapearing(windowWidth, (i)*platformHeight));
-            }
         }
         
         // Put the lowest platform under Doodle at reset so that it won't fall immediately at start

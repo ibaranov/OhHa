@@ -3,7 +3,7 @@ package doodlejump.gui;
 import doodlejump.peli.Direction;
 import doodlejump.domain.Gamestate;
 import doodlejump.peli.Player;
-import doodlejump.peli.Peli;
+import doodlejump.peli.Game;
 import java.util.*;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -15,23 +15,23 @@ import javax.swing.event.MouseInputAdapter;
  * Listens to user input to control the game  
  * @author Ivan
  */
-public class NappaimistonKuuntelija extends MouseInputAdapter implements KeyListener {
+public class DoodleKeyListener extends MouseInputAdapter implements KeyListener {
 
     
     private Player player;
-    private Piirtoalusta piirtoalusta;
-    private Peli peli;
+    private CanvasDrawer piirtoalusta;
+    private Game peli;
     private Gameover gameover;
    
     /**
      * KeyListener so that the game will respond to user input.
      * 
-     * @param piirtoalusta Instance of Piirtoalusta
+     * @param piirtoalusta Instance of CanvasDrawer
      * @param player Player in the game
      * @param peli Instance of the game
      * @param gameover Gameover screen so that a high score can be saved.
      */
-    public NappaimistonKuuntelija(Piirtoalusta piirtoalusta, Player player, Peli peli, Gameover gameover) {
+    public DoodleKeyListener(CanvasDrawer piirtoalusta, Player player, Game peli, Gameover gameover) {
         this.player = player;
         this.piirtoalusta = piirtoalusta;
         this.peli = peli;

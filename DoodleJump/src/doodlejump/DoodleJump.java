@@ -1,6 +1,6 @@
 package doodlejump;
-import doodlejump.gui.Kayttoliittyma;
-import doodlejump.peli.Peli;
+import doodlejump.gui.Interface;
+import doodlejump.peli.Game;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,9 +12,9 @@ public class DoodleJump {
     public static void main(String[] args) {
         
         // Sets up a new game
-        final Peli peli = new Peli(400, 600);
+        final Game peli = new Game(400, 600);
         // Sets up a new GUI
-        Kayttoliittyma kayttoliittyma = new Kayttoliittyma(peli);
+        Interface kayttoliittyma = new Interface(peli);
         SwingUtilities.invokeLater(kayttoliittyma);
     
         while (kayttoliittyma.getPaivitettava() == null) {
@@ -25,8 +25,8 @@ public class DoodleJump {
             }
         }
         
-        // Sets a new Paivitettava class for Peli
-        peli.setPaivitettava(kayttoliittyma.getPaivitettava());
+        // Sets a new Updateable class for Game
+        peli.setUpdateable(kayttoliittyma.getPaivitettava());
         
         // Try to run the game
         try {

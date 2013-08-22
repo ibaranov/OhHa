@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
  * A Class that is responsible for drawing everything on the screen
  * @author Ivan
  */
-public class Piirtoalusta extends JPanel implements Paivitettava{
+public class CanvasDrawer extends JPanel implements Updateable{
 
     private Player player;
     private List<Platform> plats;
@@ -38,7 +38,7 @@ public class Piirtoalusta extends JPanel implements Paivitettava{
      * @param highscore High score screen
      */
     
-    public Piirtoalusta(Player player, List<Platform> plats, Splash splash, Mainmenu mainmenu, Gameover gameover, Highscore highscore) {
+    public CanvasDrawer(Player player, List<Platform> plats, Splash splash, Mainmenu mainmenu, Gameover gameover, Highscore highscore) {
         this.player = player;
         this.plats = plats;
         super.setBackground(Color.WHITE);
