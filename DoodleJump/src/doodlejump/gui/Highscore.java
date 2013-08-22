@@ -22,7 +22,8 @@ import java.util.*;
 import javax.swing.ImageIcon;
     
 /**
- * Instance of the Highscore game state.
+ * Instance of the Highscore game state. Manages Highscores. 
+ * Reads and Writes Highscores to a text file.
  * @author Ivan
  */
 public class Highscore { 

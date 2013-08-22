@@ -6,7 +6,7 @@ import java.awt.Image;
 import java.util.*;
 import javax.swing.ImageIcon;
 /**
- * This class represents a Player in the game.
+ * This class represents a Player in the game and the players current Score.
  * @author Ivan
  */
 public class Player { 

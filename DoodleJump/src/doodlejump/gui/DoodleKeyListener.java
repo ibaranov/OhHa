@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.event.MouseInputAdapter;
 /**
- * Listens to user input to control the game  
+ * Listens to user key input to control the game  
  * @author Ivan
  */
 public class DoodleKeyListener extends MouseInputAdapter implements KeyListener {

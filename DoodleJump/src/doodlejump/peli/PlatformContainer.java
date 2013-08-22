@@ -13,7 +13,8 @@ package doodlejump.peli;
 import doodlejump.peli.Direction;
 import java.util.*;
 /**
- * A container and creator for the platforms
+ * A container and creator for the platforms. 
+ * Also manages player interaction with platforms.
  * @author Ivan
  */
 public class PlatformContainer { 

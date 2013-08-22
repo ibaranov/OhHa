@@ -16,7 +16,7 @@ import java.awt.Image;
 import java.util.*;
 import javax.swing.ImageIcon;
 /**
- * Class representation for the game splash screen.
+ * Class representation for the game splash screen. SHows the splash screen.
  * @author Ivan
  */
 public class Splash { 

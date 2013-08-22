@@ -9,7 +9,8 @@ import java.awt.Image;
 import java.util.*;
 import javax.swing.ImageIcon;
 /**
- * This class represents the Mainmenu of the game
+ * This class represents the Main menu of the game. 
+ * Includes buttons PLAY, HIGHSCORE and EXIT.
  * @author Ivan
  */
 public class Mainmenu {

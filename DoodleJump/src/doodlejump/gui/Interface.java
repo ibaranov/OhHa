@@ -10,7 +10,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.*;
 /**
- * GUi of the game.
+ * Controls the GUI of the game.
  * @author Ivan
  */
 public class Interface implements Runnable {
