@@ -17,7 +17,7 @@ public class DoodleJump {
         Interface kayttoliittyma = new Interface(peli);
         SwingUtilities.invokeLater(kayttoliittyma);
     
-        while (kayttoliittyma.getPaivitettava() == null) {
+        while (kayttoliittyma.getUpdateable() == null) {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
@@ -26,7 +26,7 @@ public class DoodleJump {
         }
         
         // Sets a new Updateable class for Game
-        peli.setUpdateable(kayttoliittyma.getPaivitettava());
+        peli.setUpdateable(kayttoliittyma.getUpdateable());
         
         // Try to run the game
         try {

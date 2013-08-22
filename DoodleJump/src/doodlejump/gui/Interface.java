@@ -88,7 +88,7 @@ public class Interface implements Runnable {
      * 
      * @return CanvasDrawer 
      */
-    public Updateable getPaivitettava(){
+    public Updateable getUpdateable(){
         return piirtoalusta;
     }
  

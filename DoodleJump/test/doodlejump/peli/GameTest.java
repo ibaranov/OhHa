@@ -5,8 +5,13 @@
 package doodlejump.peli;
 
 import doodlejump.domain.Gamestate;
+import doodlejump.gui.CanvasDrawer;
+import doodlejump.gui.Interface;
 import doodlejump.gui.Updateable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import javax.swing.SwingUtilities;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,11 +25,15 @@ import static org.junit.Assert.*;
  */
 public class GameTest {
     
+    private Game peli;
+    private Interface kayttoliittyma;
+    
     public GameTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        System.out.println("Set up class");
     }
     
     @AfterClass
@@ -33,25 +42,23 @@ public class GameTest {
     
     @Before
     public void setUp() {
+        System.out.println("Setup the Game");
+        
+        this.peli = new Game(400, 600);
+        this.kayttoliittyma = new Interface(peli);
+        this.kayttoliittyma.run();
+        peli.setUpdateable(kayttoliittyma.getUpdateable());
+        
     }
     
     @After
     public void tearDown() {
+        System.out.println(" = Teardown");
+        peli = null;
+        kayttoliittyma = null;
     }
 
-    /**
-     * Test of getPlayer method, of class Game.
-     */
-    @Test
-    public void testGetPlayer() {
-        System.out.println("getPlayer");
-        Game instance = null;
-        Player expResult = null;
-        Player result = instance.getPlayer();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of pauseGame method, of class Game.
@@ -59,24 +66,20 @@ public class GameTest {
     @Test
     public void testPauseGame() {
         System.out.println("pauseGame");
-        Game instance = null;
-        instance.pauseGame();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean expResult = false;
+        
+        if(peli.isGamePaused()){
+            expResult = false;
+            peli.pauseGame();
+            assertEquals(expResult, peli.isGamePaused());
+        } else{
+            expResult = true;
+            peli.pauseGame();
+            assertEquals(expResult, peli.isGamePaused());
+        }
     }
 
-    /**
-     * Test of setDoodleDead method, of class Game.
-     */
-    @Test
-    public void testSetDoodleDead() {
-        System.out.println("setDoodleDead");
-        boolean doodleDead = false;
-        Game instance = null;
-        instance.setDoodleDead(doodleDead);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of restart method, of class Game.
@@ -84,24 +87,31 @@ public class GameTest {
     @Test
     public void testRestart() {
         System.out.println("restart");
-        Game instance = null;
-        instance.restart();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean expResult = false;
+        peli.restart();
+        
+        // test isDoodleDead reset
+        assertEquals(expResult, peli.isDoodleDead());
+        
+        // test score reset
+        assertEquals(0, peli.getPlayer().getScore());
+        
+        // test player positioning
+        assertEquals(Direction.INPLACE, peli.getPlayer().getDirection());
+        assertEquals(0, peli.getPlayer().getxVelocity());
+        assertEquals(0, peli.getPlayer().getyVelocity(), 0.0001);
+        assertEquals(250, peli.getPlayer().getY(), 0.0001);
+        
+        // test platformcontainer reset
+        assertEquals(0, peli.getPlatformContainer().getDifficultyLevel());
+        
+        // test resetting of platforms
+        List<Integer> pTypes = new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1));
+        assertEquals(pTypes, peli.getPlatformContainer().getPlatformTypes());
+        
     }
 
-    /**
-     * Test of setUpdateable method, of class Game.
-     */
-    @Test
-    public void testSetUpdateable() {
-        System.out.println("setUpdateable");
-        Updateable paivitettava = null;
-        Game instance = null;
-        instance.setUpdateable(paivitettava);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of run method, of class Game.
@@ -109,50 +119,26 @@ public class GameTest {
     @Test
     public void testRun() throws Exception {
         System.out.println("run");
-        Game instance = null;
-        instance.run();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Simple game loop. difficult to come up with any rational tests");
     }
 
-    /**
-     * Test of getGamestate method, of class Game.
-     */
     @Test
-    public void testGetGamestate() {
-        System.out.println("getGamestate");
-        Game instance = null;
-        Gamestate expResult = null;
-        Gamestate result = instance.getGamestate();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testdoGameUpdates() throws Exception {
+        System.out.println("doGameUpdates");
+        peli.setGamestate(Gamestate.GAME);
+        
+        // test doodle falling
+        
+        peli.getPlayer().setY(601);
+        peli.setDoodleDead(false);
+        peli.doGameUpdates(1);
+        
+        assertEquals(true, peli.isDoodleDead());
+        // test if gamestate moved to gameover
+        assertEquals(Gamestate.GAMEOVER, peli.getGamestate());
+        
+        System.out.println("Everything else was already covered in PlatformContainer tests");
     }
 
-    /**
-     * Test of setGamestate method, of class Game.
-     */
-    @Test
-    public void testSetGamestate() {
-        System.out.println("setGamestate");
-        Gamestate gamestate = null;
-        Game instance = null;
-        instance.setGamestate(gamestate);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getPlatforms method, of class Game.
-     */
-    @Test
-    public void testGetPlatforms() {
-        System.out.println("getPlatforms");
-        Game instance = null;
-        List expResult = null;
-        List result = instance.getPlatforms();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 }

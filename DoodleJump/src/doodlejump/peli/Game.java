@@ -137,7 +137,7 @@ public class Game {
      * @param delta to adjust updates for variable time
      */
     
-    private void doGameUpdates(double delta){
+    public void doGameUpdates(double delta){
         boolean addToScore = false;
         
         // Check collision with platforms
@@ -183,6 +183,19 @@ public class Game {
     public List<Platform> getPlatforms() {
         return platformContainer.getPlatforms();
     }
-    
 
+    public boolean isGamePaused() {
+        return gamePaused;
+    }
+
+    public boolean isDoodleDead() {
+        return doodleDead;
+    }
+
+    public PlatformContainer getPlatformContainer() {
+        return platformContainer;
+    }
+
+    
+    
 }
