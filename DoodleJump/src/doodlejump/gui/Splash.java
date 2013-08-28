@@ -30,9 +30,17 @@ public class Splash {
      */
     public Splash() {
     
+<<<<<<< HEAD
         bgImageName = this.getClass().getResource("./images/splash.png");
         
         ImageIcon ii = new ImageIcon(bgImageName);
+=======
+        bgImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\gui\\images\\splash.png";
+        URL url = this.getClass().getResource("./images/splash.png");
+        //System.out.println("url  " + url);
+        
+        ImageIcon ii = new ImageIcon(url);
+>>>>>>> b4b0c93f03bde6393d2ce591f3dfa958156758ef
         this.img = ii.getImage();
         
     }
