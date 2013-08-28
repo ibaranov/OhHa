@@ -31,7 +31,8 @@ public class Enemy {
     
 
     public Enemy(int windowWidth, int y) {
-        this.enemyName = "enemy1.png";
+        this.enemyName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\Smosquito.png";
+        
         ImageIcon ii = new ImageIcon(this.getClass().getResource(enemyName));
         this.img = ii.getImage();
         
@@ -42,6 +43,9 @@ public class Enemy {
         this.y = y;
         this.enemyWidth = 50;
     }
+    
+    
+    
     
     
      public void piirra(Graphics graphics){
