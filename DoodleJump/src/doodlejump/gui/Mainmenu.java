@@ -6,6 +6,7 @@
 package doodlejump.gui; 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.net.URL;
 import java.util.*;
 import javax.swing.ImageIcon;
 /**
@@ -17,13 +18,13 @@ public class Mainmenu {
     
     
     private Image img;
-    private String bgImageName;
+    private URL bgImageName;
     /**
      * Sets up a new main menu with the given image
      */
     public Mainmenu() {
     
-        bgImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\gui\\images\\bgimage.png";
+        bgImageName = this.getClass().getResource("./images/bgimage.png");
         ImageIcon ii = new ImageIcon(bgImageName);
         this.img = ii.getImage();
         

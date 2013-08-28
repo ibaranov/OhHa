@@ -3,6 +3,7 @@ import doodlejump.peli.Direction;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.net.URL;
 import java.util.*;
 import javax.swing.ImageIcon;
 /**
@@ -21,7 +22,7 @@ public class Player {
     private boolean jumping = true;
     private int score;
     private int width;
-    String playerImageName;
+    private URL playerImageName;
     
     
     /**
@@ -39,10 +40,10 @@ public class Player {
         this.yVelocity = 0;
         this.score = 0;
         this.width = width;
-        this.playerImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\frog.png";
+        this.playerImageName = this.getClass().getResource("./images/frog.png");
         
         
-        ImageIcon ii = new ImageIcon(this.playerImageName);
+        ImageIcon ii = new ImageIcon(this.playerImageName.getPath());
         this.img = ii.getImage();
         
         

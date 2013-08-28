@@ -25,7 +25,7 @@ public class PlatformDissapearing extends Platform{
      */
     public PlatformDissapearing(int screenWidth, int y) {
         super(screenWidth, y);
-        super.setPlatName("C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\cloud_disappearing.png");
+        super.setPlatName(this.getClass().getResource("./images/cloud_disappearing.png"));
         super.setType(3);
         
         ImageIcon ii = new ImageIcon(super.getPlatName());

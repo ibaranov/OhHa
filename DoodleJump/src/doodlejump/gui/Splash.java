@@ -13,6 +13,7 @@ package doodlejump.gui;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.net.URL;
 import java.util.*;
 import javax.swing.ImageIcon;
 /**
@@ -23,15 +24,17 @@ public class Splash {
   
     
     private Image img;
-    private String bgImageName;
+    private URL bgImageName;
     /**
      * Sets up a new Splash screen with the given image.
      */
     public Splash() {
     
-        bgImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\gui\\images\\splash.png";
+        bgImageName = this.getClass().getResource("./images/splash.png");
+        
         ImageIcon ii = new ImageIcon(bgImageName);
         this.img = ii.getImage();
+        
     }
     
     /**

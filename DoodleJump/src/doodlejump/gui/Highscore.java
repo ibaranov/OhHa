@@ -28,11 +28,11 @@ import javax.swing.ImageIcon;
  */
 public class Highscore { 
   
-    final String FILE_NAME = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\txtresources\\highscores.txt";
+    private URL FILE_NAME = this.getClass().getResource("./txtfiles/highscores.txt");
     private List<String> names;
     private List<Integer> scores;
     private Image img;
-    private String bgImageName;
+    private URL bgImageName;
     
     /**
      * Constructor sets up a new Highscore screen with the given image.
@@ -42,7 +42,7 @@ public class Highscore {
     public Highscore() {
         this.names = new ArrayList<String>();
         this.scores = new ArrayList<Integer>();
-        bgImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\gui\\images\\highscore.png";
+        bgImageName = this.getClass().getResource("./images/highscore.png");
         
         ImageIcon ii = new ImageIcon(bgImageName);
         this.img = ii.getImage();
@@ -54,7 +54,7 @@ public class Highscore {
      * Reads the text file that contains the save high scores.
      */
     public void readFile() {
-        File file = new File(FILE_NAME);
+        File file = new File(FILE_NAME.getPath());
         Scanner reader = null;
 
         try {
@@ -78,7 +78,7 @@ public class Highscore {
      * Writes to the text file that contains the high scores.
      */
     public void writeToFile(){
-        File file = new File(FILE_NAME);
+        File file = new File(FILE_NAME.getPath());
         String highscores = "";
         
         // put name + highscore to string
@@ -91,14 +91,14 @@ public class Highscore {
         
         // try writing to file
         try {			
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            FileWriter fw = new FileWriter(file);
 	    BufferedWriter bw = new BufferedWriter(fw);
             
             bw.write(highscores);
             bw.close();
  
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Writing to File Failed: " + e.getMessage());
         }
     }
     

@@ -1,6 +1,7 @@
 package doodlejump.peli;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.net.URL;
 import java.util.*;
 import javax.swing.ImageIcon;
 /**
@@ -13,7 +14,7 @@ public class Platform {
     private int y;
     private int platformWidth;
     private Image img;
-    private String platName;
+    private URL platName;
     private int type;
     private boolean bouncedOn;
 
@@ -27,7 +28,7 @@ public class Platform {
         this.platformWidth = 50;
         this.x = random.nextInt(screenWidth - platformWidth - 15);
         this.y = y;
-        this.platName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\cloud_basic.png";
+        this.platName = this.getClass().getResource("./images/cloud_basic.png");
         this.type = 1;
         this.bouncedOn = false;
         
@@ -38,7 +39,7 @@ public class Platform {
      * Sets the platform name
      * @param platName 
      */
-    public void setPlatName(String platName) {
+    public void setPlatName(URL platName) {
         this.platName = platName;
     }
 
@@ -92,7 +93,7 @@ public class Platform {
      * 
      * @return platform name
      */
-    public String getPlatName() {
+    public URL getPlatName() {
         return platName;
     }
 

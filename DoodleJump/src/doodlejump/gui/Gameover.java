@@ -13,6 +13,7 @@ package doodlejump.gui;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.net.URL;
 import java.util.*;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
@@ -26,7 +27,7 @@ import javax.swing.JTextArea;
 public class Gameover { 
   
     private Image img;
-    private String gameoverImageName;
+    private URL gameoverImageName;
     private int score;
     private String playerName;
     private Highscore highscore;
@@ -38,7 +39,7 @@ public class Gameover {
     public Gameover(Highscore highscore) {
         
         this.playerName = "";
-        gameoverImageName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\gui\\images\\gameover.png";
+        gameoverImageName = this.getClass().getResource("./images/gameover.png");
         ImageIcon ii = new ImageIcon(gameoverImageName);
         this.img = ii.getImage();
         this.highscore = highscore;
