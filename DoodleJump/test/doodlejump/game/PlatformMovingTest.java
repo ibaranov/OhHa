@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package doodlejump.peli;
+package doodlejump.game;
 
+import doodlejump.game.Direction;
+import doodlejump.game.PlatformMoving;
 import java.awt.Graphics;
 import org.junit.After;
 import org.junit.AfterClass;

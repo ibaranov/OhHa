@@ -3,9 +3,9 @@ package doodlejump.gui;
 import doodlejump.domain.Gamestate;
 import static doodlejump.domain.Gamestate.GAMEOVER;
 import static doodlejump.domain.Gamestate.MAINMENU;
-import doodlejump.peli.Platform;
-import doodlejump.peli.PlatformContainer;
-import doodlejump.peli.Player;
+import doodlejump.game.Platform;
+import doodlejump.game.PlatformContainer;
+import doodlejump.game.Player;
 import java.util.*;
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -96,11 +96,8 @@ public class CanvasDrawer extends JPanel implements Updateable{
                         splash.piirra(graphics);
                         break;
                 
-            case GAME: 
-                        
-                        // Piirra alustat
+            case GAME:
                         platformcontainer.drawPlatforms(graphics);
-                        // Piirra pelaaja
                         player.piirra(graphics);
                         break;
             

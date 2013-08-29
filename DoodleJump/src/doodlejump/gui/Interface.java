@@ -1,13 +1,9 @@
 package doodlejump.gui;
 
 import doodlejump.gui.DoodleKeyListener;
-import doodlejump.peli.Platform;
-import doodlejump.peli.Game;
-import java.awt.BorderLayout;
-import java.awt.Color;
+import doodlejump.game.Game;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Font;
 import javax.swing.*;
 /**
  * Controls the GUI of the game.
@@ -16,17 +12,17 @@ import javax.swing.*;
 public class Interface implements Runnable {
 
     private JFrame frame;
-    private CanvasDrawer piirtoalusta;
-    private Game peli;
+    private CanvasDrawer drawingboard;
+    private Game game;
     private int windowWidth;
     private int windowHeight;
     
     /**
      * The constructor also sets the game window height and width
-     * @param peli the game that will be controlled by this GUI
+     * @param game the game that will be controlled by this GUI
      */
-    public Interface(Game peli) {
-        this.peli = peli;
+    public Interface(Game game) {
+        this.game = game;
         this.windowHeight = 600;
         this.windowWidth = 400; 
     }
@@ -40,7 +36,7 @@ public class Interface implements Runnable {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //frame.setResizable(true);
         frame.setTitle("Jumper");
-        luoKomponentit(frame.getContentPane());
+        createComponents(frame.getContentPane());
         
         
         frame.pack();
@@ -58,7 +54,7 @@ public class Interface implements Runnable {
      * 
      * @param container 
      */
-    private void luoKomponentit(Container container) {
+    private void createComponents(Container container) {
         Splash splash = new Splash();
         Mainmenu main = new Mainmenu();
         Highscore highscore = new Highscore();
@@ -67,12 +63,12 @@ public class Interface implements Runnable {
         
         // Create text field for gameover screen
        
-        // create piirtoalusta
-        piirtoalusta = new CanvasDrawer(peli.getPlayer(), peli.getPlatformContainer(), splash, main, gameover, highscore);
+        // create drawingboard
+        drawingboard = new CanvasDrawer(game.getPlayer(), game.getPlatformContainer(), splash, main, gameover, highscore);
         
-        container.add(piirtoalusta);
+        container.add(drawingboard);
         
-        DoodleKeyListener nk = new DoodleKeyListener(piirtoalusta, peli.getPlayer(), peli, gameover);
+        DoodleKeyListener nk = new DoodleKeyListener(drawingboard, game.getPlayer(), game, gameover);
         frame.addKeyListener(nk);
         frame.addMouseListener(nk);
         
@@ -89,7 +85,7 @@ public class Interface implements Runnable {
      * @return CanvasDrawer 
      */
     public Updateable getUpdateable(){
-        return piirtoalusta;
+        return drawingboard;
     }
  
 }

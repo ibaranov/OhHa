@@ -1,8 +1,8 @@
 package doodlejump.gui;
 
 import doodlejump.domain.Gamestate;
-import doodlejump.peli.Platform;
-import doodlejump.peli.Player;
+import doodlejump.game.Platform;
+import doodlejump.game.Player;
 import java.util.List;
 /**
  * An interface for classes that draw images on the screen.

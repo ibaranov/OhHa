@@ -1,15 +1,12 @@
 
 package doodlejump.gui; 
-import doodlejump.peli.Direction;
+import doodlejump.game.Direction;
 import doodlejump.domain.Gamestate;
-import doodlejump.peli.Player;
-import doodlejump.peli.Game;
-import java.util.*;
-import java.awt.Component;
+import doodlejump.game.Player;
+import doodlejump.game.Game;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
-import javax.swing.JFrame;
 import javax.swing.event.MouseInputAdapter;
 /**
  * Listens to user key input to control the game  
@@ -19,22 +16,22 @@ public class DoodleKeyListener extends MouseInputAdapter implements KeyListener 
 
     
     private Player player;
-    private CanvasDrawer piirtoalusta;
-    private Game peli;
+    private CanvasDrawer drawingboard;
+    private Game game;
     private Gameover gameover;
    
     /**
      * KeyListener so that the game will respond to user input.
      * 
-     * @param piirtoalusta Instance of CanvasDrawer
+     * @param drawingboard Instance of CanvasDrawer
      * @param player Player in the game
-     * @param peli Instance of the game
+     * @param game Instance of the game
      * @param gameover Gameover screen so that a high score can be saved.
      */
-    public DoodleKeyListener(CanvasDrawer piirtoalusta, Player player, Game peli, Gameover gameover) {
+    public DoodleKeyListener(CanvasDrawer drawingboard, Player player, Game game, Gameover gameover) {
         this.player = player;
-        this.piirtoalusta = piirtoalusta;
-        this.peli = peli;
+        this.drawingboard = drawingboard;
+        this.game = game;
         this.gameover = gameover;
     }
     
@@ -45,24 +42,24 @@ public class DoodleKeyListener extends MouseInputAdapter implements KeyListener 
     @Override
     public void mousePressed(MouseEvent e) {
        // Main menu buttons
-       if(peli.getGamestate() == Gamestate.MAINMENU && e.getButton()==1 && e.getX() >= 110 && e.getX() <= 290){
+       if(game.getGamestate() == Gamestate.MAINMENU && e.getButton()==1 && e.getX() >= 110 && e.getX() <= 290){
            if(e.getY() >= 215 && e.getY() <= 290){
-                peli.setGamestate(Gamestate.GAME);
-                piirtoalusta.setGamestate(Gamestate.GAME);
+                game.setGamestate(Gamestate.GAME);
+                drawingboard.setGamestate(Gamestate.GAME);
            } else if(e.getY() >= 300 && e.getY() <= 375){
-               peli.setGamestate(Gamestate.HIGHSCORES);
-               piirtoalusta.setGamestate(Gamestate.HIGHSCORES);
+               game.setGamestate(Gamestate.HIGHSCORES);
+               drawingboard.setGamestate(Gamestate.HIGHSCORES);
            } else if(e.getY() >= 390 && e.getY() <= 465){
-               peli.setGamestate(Gamestate.EXIT);
-               piirtoalusta.setGamestate(Gamestate.EXIT);
+               game.setGamestate(Gamestate.EXIT);
+               drawingboard.setGamestate(Gamestate.EXIT);
                System.exit(0);
            }
        }
        
        // Move from Splash screen
-       if (peli.getGamestate() == Gamestate.SPLASH && e.getButton() == 1) {
-            peli.setGamestate(Gamestate.MAINMENU);
-            piirtoalusta.setGamestate(Gamestate.MAINMENU);
+       if (game.getGamestate() == Gamestate.SPLASH && e.getButton() == 1) {
+            game.setGamestate(Gamestate.MAINMENU);
+            drawingboard.setGamestate(Gamestate.MAINMENU);
         }
        
         
@@ -74,7 +71,7 @@ public class DoodleKeyListener extends MouseInputAdapter implements KeyListener 
      */
     @Override
     public void keyPressed(KeyEvent e) {
-        if(peli.getGamestate() == Gamestate.GAME){
+        if(game.getGamestate() == Gamestate.GAME){
             this.controlPlayer(e);
         }
         
@@ -83,29 +80,29 @@ public class DoodleKeyListener extends MouseInputAdapter implements KeyListener 
         }
         
         // Restart the game
-        if ( e.getKeyCode() == KeyEvent.VK_R && ( peli.getGamestate() == Gamestate.GAME || peli.getGamestate() == Gamestate.PAUSE || 
-                peli.getGamestate() == Gamestate.GAMEOVER ) && !gameover.setNewHighscore()) {
-            peli.restart();
+        if ( e.getKeyCode() == KeyEvent.VK_R && ( game.getGamestate() == Gamestate.GAME || game.getGamestate() == Gamestate.PAUSE || 
+                game.getGamestate() == Gamestate.GAMEOVER ) && !gameover.setNewHighscore()) {
+            game.restart();
         }
         
         
-        if (peli.getGamestate() == Gamestate.SPLASH && e.getKeyCode() == KeyEvent.VK_ENTER) {
-            peli.setGamestate(Gamestate.MAINMENU);
-            piirtoalusta.setGamestate(Gamestate.MAINMENU);
+        if (game.getGamestate() == Gamestate.SPLASH && e.getKeyCode() == KeyEvent.VK_ENTER) {
+            game.setGamestate(Gamestate.MAINMENU);
+            drawingboard.setGamestate(Gamestate.MAINMENU);
         }
         
         // Move to main menu from Highscores screen
-        if (peli.getGamestate() == Gamestate.HIGHSCORES && e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            peli.restart();
-            peli.setGamestate(Gamestate.MAINMENU);
-            piirtoalusta.setGamestate(Gamestate.MAINMENU);
+        if (game.getGamestate() == Gamestate.HIGHSCORES && e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            game.restart();
+            game.setGamestate(Gamestate.MAINMENU);
+            drawingboard.setGamestate(Gamestate.MAINMENU);
         }
         
-        if (peli.getGamestate() == Gamestate.GAMEOVER && gameover.setNewHighscore() ) {
+        if (game.getGamestate() == Gamestate.GAMEOVER && gameover.setNewHighscore() ) {
             this.writeNameToHighscores(e);
         }
         
-        piirtoalusta.paivita();
+        drawingboard.paivita();
     }
     
     /**
@@ -137,10 +134,10 @@ public class DoodleKeyListener extends MouseInputAdapter implements KeyListener 
      * Method to pause the game
      */
     public void pauseGame(){
-        if(peli.getGamestate() == Gamestate.GAME){
-            peli.setGamestate(Gamestate.PAUSE);
-        } else if(peli.getGamestate() == Gamestate.PAUSE){
-            peli.setGamestate(Gamestate.GAME);
+        if(game.getGamestate() == Gamestate.GAME){
+            game.setGamestate(Gamestate.PAUSE);
+        } else if(game.getGamestate() == Gamestate.PAUSE){
+            game.setGamestate(Gamestate.GAME);
         }
     }
     
@@ -154,8 +151,8 @@ public class DoodleKeyListener extends MouseInputAdapter implements KeyListener 
         String merkki = e.getKeyChar() + "";
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             gameover.sendScoreToHighscore();
-            peli.setGamestate(Gamestate.HIGHSCORES);
-            piirtoalusta.setGamestate(Gamestate.HIGHSCORES);
+            game.setGamestate(Gamestate.HIGHSCORES);
+            drawingboard.setGamestate(Gamestate.HIGHSCORES);
         } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
             gameover.removeCharFromName();
         } else if (merkki.matches("\\p{ASCII}|[ŒŠš€…§Ÿ†]")) {

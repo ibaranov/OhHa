@@ -1,6 +1,6 @@
-frog 1000
-frog 1000
-frog 1000
+frog 999
+frog 100
+frog 100
 frog 100
 frog 100
 frog 100

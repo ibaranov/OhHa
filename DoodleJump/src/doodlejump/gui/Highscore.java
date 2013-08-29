@@ -13,8 +13,10 @@ package doodlejump.gui;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +28,7 @@ import javax.swing.ImageIcon;
  * Reads and Writes Highscores to a text file.
  * @author Ivan
  */
+
 public class Highscore { 
   
     private URL FILE_NAME = this.getClass().getResource("./txtfiles/highscores.txt");
@@ -44,10 +47,13 @@ public class Highscore {
         this.scores = new ArrayList<Integer>();
         bgImageName = this.getClass().getResource("./images/highscore.png");
         
+        
+        //System.out.println("WOW " + FILE_NAME);
         ImageIcon ii = new ImageIcon(bgImageName);
         this.img = ii.getImage();
         
         this.readFile();
+      
     }
     
     /**
@@ -55,24 +61,29 @@ public class Highscore {
      */
     public void readFile() {
         File file = new File(FILE_NAME.getPath());
-        Scanner reader = null;
-
+        String line = "";
+        
         try {
-            reader = new Scanner(file);
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            while((line = bufferedReader.readLine()) != null) {
+                String[] split = line.split(" ");
+                names.add(split[0]);
+                try {
+                    scores.add(Integer.parseInt(split[1]));
+                } catch (Exception e) {
+                    System.out.println("Corrupted text file!: " + e.getMessage());
+                    return;
+                }
+            }
+            
+            bufferedReader.close();
         } catch (Exception e) {
             System.out.println("Reading the file failed: " + e.getMessage());
             return;
         }
-
-        while (reader.hasNextLine()) {
-            String line = reader.nextLine();
-            String[] split = line.split(" ");
-            names.add(split[0]);
-            scores.add(Integer.parseInt(split[1]));
-        }
-
-        reader.close();
     }
+    
     
     /**
      * Writes to the text file that contains the high scores.

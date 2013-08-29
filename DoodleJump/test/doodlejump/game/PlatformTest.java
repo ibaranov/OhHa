@@ -2,10 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package doodlejump.peli;
+package doodlejump.game;
 
+import doodlejump.game.Platform;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -55,7 +57,7 @@ public class PlatformTest {
     @Test
     public void testSetPlatName() {
         System.out.println("setPlatName");
-        String platName = "C:\\Users\\Ivan\\Documents\\GitHub\\OhHa\\DoodleJump\\src\\doodlejump\\peli\\images\\cloud_basic.png";
+        URL platName = this.getClass().getResource("./images/cloud_basic.png");
         platform.setPlatName(platName);
         assertEquals(platform.getPlatName(), platName);
     }

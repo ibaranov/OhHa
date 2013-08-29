@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package doodlejump.peli;
+package doodlejump.game;
 
+import doodlejump.game.Game;
+import doodlejump.game.Direction;
 import doodlejump.domain.Gamestate;
 import doodlejump.gui.CanvasDrawer;
 import doodlejump.gui.Interface;

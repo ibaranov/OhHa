@@ -120,9 +120,9 @@ public class Gameover {
      */
     public void piirraIfHighscore(Graphics graphics){
         String str = "You Made A New Highscore!";
-        graphics.drawString(str , 10, 350);
+        graphics.drawString(str , 30, 350);
         String str2 = "Please write your name below:";
-        graphics.drawString(str2 , 10, 400);
+        graphics.drawString(str2 , 30, 400);
     }
     
     /**
@@ -132,10 +132,10 @@ public class Gameover {
      * @param graphics for drawing the text on the screen
      */
     public void piirraIfNotHighscore(Graphics graphics){
-        String restart = "Press 'R' to restart the game";
-        graphics.drawString(restart , 40, 400);
+        String restart = "Press 'Esc' to return to Menu";
+        graphics.drawString(restart , 30, 400);
         String str = "You did not make a new highscore";
-        graphics.drawString(str , 20, 350);
+        graphics.drawString(str , 10, 350);
     }
 
     /**

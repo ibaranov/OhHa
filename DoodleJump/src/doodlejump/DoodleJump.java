@@ -1,10 +1,8 @@
 package doodlejump;
 import doodlejump.gui.Interface;
-import doodlejump.peli.Game;
+import doodlejump.game.Game;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 public class DoodleJump {
@@ -12,25 +10,25 @@ public class DoodleJump {
     public static void main(String[] args) {
         
         // Sets up a new game
-        final Game peli = new Game(400, 600);
+        final Game game = new Game(400, 600);
         // Sets up a new GUI
-        Interface kayttoliittyma = new Interface(peli);
-        SwingUtilities.invokeLater(kayttoliittyma);
+        Interface iface = new Interface(game);
+        SwingUtilities.invokeLater(iface);
     
-        while (kayttoliittyma.getUpdateable() == null) {
+        while (iface.getUpdateable() == null) {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
-                System.out.println("Piirtoalustaa ei ole vielä luotu.");
+                System.out.println("CanvasDrawer has not been created yet");
             }
         }
         
         // Sets a new Updateable class for Game
-        peli.setUpdateable(kayttoliittyma.getUpdateable());
+        game.setUpdateable(iface.getUpdateable());
         
         // Try to run the game
         try {
-            peli.run();
+            game.run();
         } catch (InterruptedException ex) {
             Logger.getLogger(DoodleJump.class.getName()).log(Level.SEVERE, null, ex);
         }

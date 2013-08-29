@@ -10,11 +10,9 @@ package doodlejump.gui;
  * @author Ivan 
  */ 
 
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.net.URL;
-import java.util.*;
 import javax.swing.ImageIcon;
 /**
  * Class representation for the game splash screen. SHows the splash screen.
