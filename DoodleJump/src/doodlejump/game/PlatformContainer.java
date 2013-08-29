@@ -82,7 +82,7 @@ public class PlatformContainer {
         } else if (this.difficultyLevel == 2){
             this.platformTypes = new ArrayList<>(Arrays.asList(1, 1, 1, 1, 2, 2, 2, 2, 3, 3)); 
         } else if (this.difficultyLevel == 3){
-            this.platformTypes = new ArrayList<>(Arrays.asList(1, 1, 2, 2, 2, 2, 3, 3, 3, 3)); 
+            this.platformTypes = new ArrayList<>(Arrays.asList(1, 1, 2, 2, 2, 3, 3, 3, 3, 3)); 
         } else {
             this.platformTypes = new ArrayList<>(Arrays.asList(2, 2, 2, 2, 2, 2, 2, 2, 2, 2)); 
         }
@@ -124,7 +124,6 @@ public class PlatformContainer {
             platforms.clear();
         }
         
-        
         int numberOfPlatforms = 8;
         int platformHeight = (windowHeight-60) / numberOfPlatforms;
         
@@ -145,7 +144,7 @@ public class PlatformContainer {
      * Platform are moved downwards a distance that reflects the remaining
      * velocity of the player after he reaches the half of the screen.
      * @param addToScore boolean that tells the program to either increase or not increase the score.
-     * @param player
+     * @param player player
      * @param width is the width of the screen
      * @param height is the height of the screen
      * @return true if platforms are moved downwards and score increases, or

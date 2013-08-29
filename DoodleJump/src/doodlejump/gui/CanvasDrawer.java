@@ -55,7 +55,7 @@ public class CanvasDrawer extends JPanel implements Updateable{
     
     /**
      * Sets the state of the game
-     * @param gamestate 
+     * @param gamestate state of the game
      */
     public void setGamestate(Gamestate gamestate) {
         this.gamestate = gamestate;
@@ -63,7 +63,7 @@ public class CanvasDrawer extends JPanel implements Updateable{
     
     /**
      * Sets a new player
-     * @param player 
+     * @param player player
      */
     public void setPlayer(Player player) {
         this.player = player;
@@ -71,7 +71,7 @@ public class CanvasDrawer extends JPanel implements Updateable{
 
     /**
      * Sets a new list of platforms to draw
-     * @param plats 
+     * @param plats list of platforms
      */
     public void setPlats(List<Platform> plats) {
         this.plats = plats;

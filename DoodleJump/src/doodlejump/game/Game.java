@@ -54,7 +54,7 @@ public class Game {
     /**
      * Sets the boolean doodleDead so that program knows when player is dead
      * and acts accordingly
-     * @param doodleDead 
+     * @param doodleDead true if doodleIsDead, false otherwise.
      */
     public void setDoodleDead(boolean doodleDead) {
         this.doodleDead = doodleDead;

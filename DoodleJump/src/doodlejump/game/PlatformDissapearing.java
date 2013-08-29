@@ -20,8 +20,8 @@ public class PlatformDissapearing extends Platform{
 
     /**
      * 
-     * @param screenWidth of the screen
-     * @param y 
+     * @param screenWidth width of the screen
+     * @param y y-coordinate of the platform
      */
     public PlatformDissapearing(int screenWidth, int y) {
         super(screenWidth, y);

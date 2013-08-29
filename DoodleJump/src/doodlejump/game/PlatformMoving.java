@@ -20,8 +20,8 @@ public class PlatformMoving extends Platform{
     
     /**
      * Creates a new moving platform
-     * @param screenWidth
-     * @param y 
+     * @param screenWidth is the width of the screen
+     * @param y is the y-coordinate of the platform
      */
     public PlatformMoving(int screenWidth, int y) {
         super(screenWidth, y);
@@ -39,7 +39,7 @@ public class PlatformMoving extends Platform{
   
     /**
      * Increases the x-axis velocity of the platform
-     * @param xVel 
+     * @param xVel increase velocity by this parameter.
      */
     public void addToX(double xVel) {
         super.increaseX(xVel);

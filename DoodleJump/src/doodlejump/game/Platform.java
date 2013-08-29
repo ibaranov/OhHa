@@ -138,7 +138,7 @@ public class Platform {
     }
     /**
      * Increases the x-position of the platform
-     * @param nx 
+     * @param nx addition to x-coordinate
      */
     public void addToX(int nx){
         x += nx;

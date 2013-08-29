@@ -47,17 +47,14 @@ public class Highscore {
         this.scores = new ArrayList<Integer>();
         bgImageName = this.getClass().getResource("./images/highscore.png");
         
-        
-        //System.out.println("WOW " + FILE_NAME);
         ImageIcon ii = new ImageIcon(bgImageName);
         this.img = ii.getImage();
         
         this.readFile();
-      
     }
     
     /**
-     * Reads the text file that contains the save high scores.
+     * Reads the text file that contains the saved high scores.
      */
     public void readFile() {
         File file = new File(FILE_NAME.getPath());

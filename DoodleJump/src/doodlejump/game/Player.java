@@ -49,6 +49,10 @@ public class Player {
         
     }
 
+    /**
+     * 
+     * @return the gravity parameter that affects the doodle jump height.
+     */
     public double getGravity() {
         return gravity;
     }
@@ -88,8 +92,8 @@ public class Player {
     
     
     /**
-     * 
-     * @param delta 
+     * Moves the doodle/player according to the x and y coordinates.
+     * @param delta to adjust for variable time.
      */
     public void move(double delta) {
         if (direction == Direction.RIGHT) {
@@ -132,6 +136,11 @@ public class Player {
         //************************
     }
     
+    /**
+     * Adds parameters to x and y.
+     * @param nx addition to x
+     * @param ny addition to y
+     */
     public void moveByXandY(int nx, int ny){
         this.x += nx;
         this.y += ny;
@@ -226,7 +235,7 @@ public class Player {
     
     /**
      * Returns player image width
-     * @return 
+     * @return the width of the player image.
      */
     public int getWidth(){
         return img.getWidth(null);
@@ -234,7 +243,7 @@ public class Player {
     
     /**
      * Returns player image height
-     * @return 
+     * @return the height of the player image-
      */
     public int getHeight(){
         return img.getHeight(null);
